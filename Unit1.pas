@@ -3,9 +3,9 @@ unit Unit1;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, System.NetEncoding, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls, IdBaseComponent, IdNetworkCalculator;
 
 type
   TForm1 = class(TForm)
@@ -22,11 +22,11 @@ type
     lblBase64Title: TLabel;
     lblInput: TLabel;
     lblOutput: TLabel;
-    memoOutput: TMemo;
     btnEncode: TButton;
     btnDecode: TButton;
     btnCopy: TButton;
     btnClear: TButton;
+    memoOutput: TMemo;
     memoInput: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure HighlightActiveButton(Button: TButton);
@@ -34,6 +34,11 @@ type
     procedure CalcButtonClick(Sender: TObject);
     procedure HashButtonClick(Sender: TObject);
     procedure CompButtonClick(Sender: TObject);
+    procedure btnClearClick(Sender: TObject);
+    procedure btnCopyClick(Sender: TObject);
+    procedure btnEncodeClick(Sender: TObject);
+    procedure btnDecodeClick(Sender: TObject);
+    procedure ErrorTreatment(const Operation: string; E: exception);
   private
     { Private declarations }
   public
@@ -44,6 +49,12 @@ var
   Form1: TForm1;
 
 implementation
+
+procedure TForm1.ErrorTreatment(const Operation: string; E: exception);
+begin
+  MessageDlg('Erro durante a operação de ' + Operation + ': '
+  + E.Message, mtError, [mbOK], 0);
+end;
 
 procedure TForm1.HighlightActiveButton(Button: TButton);
 var
@@ -62,10 +73,44 @@ begin
   Button.Font.Color := clBlue;
 end;
 
+
 procedure TForm1.Base64ButtonClick(Sender: TObject);
 begin
   MainClient.ActivePage := TabBase64;
   HighlightActiveButton(Base64Button);
+end;
+
+procedure TForm1.btnClearClick(Sender: TObject);
+begin
+  memoInput.Text := '';
+  memoOutput.Text := '';
+end;
+
+procedure TForm1.btnCopyClick(Sender: TObject);
+begin
+  memoOutput.SetFocus;
+  memoOutput.SelectAll;
+  memoOutput.CopyToClipboard;
+end;
+
+procedure TForm1.btnDecodeClick(Sender: TObject);
+begin
+  try
+    memoInput.text := TNetEncoding.Base64.Decode(memoOutput.Text);
+  except
+  on E: Exception do
+    ErrorTreatment('decodificação', E);
+  end;
+end;
+
+procedure TForm1.btnEncodeClick(Sender: TObject);
+begin
+  try
+    memoOutput.Text := TNetEncoding.Base64.Encode(memoInput.Text);
+  except
+  on E: Exception do
+      ErrorTreatment('codificação', E);
+  end;
 end;
 
 procedure TForm1.CalcButtonClick(Sender: TObject);

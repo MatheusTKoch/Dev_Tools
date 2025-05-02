@@ -10,6 +10,7 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object MainPanel: TPanel
     Left = 0
@@ -18,9 +19,6 @@ object Form1: TForm1
     Height = 441
     Align = alLeft
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = 24
-    ExplicitHeight = 377
     object Base64Button: TButton
       AlignWithMargins = True
       Left = 4
@@ -31,9 +29,6 @@ object Form1: TForm1
       Caption = 'Base64 Converter'
       TabOrder = 0
       OnClick = Base64ButtonClick
-      ExplicitLeft = 30
-      ExplicitTop = 80
-      ExplicitWidth = 139
     end
     object CalcButton: TButton
       AlignWithMargins = True
@@ -45,9 +40,6 @@ object Form1: TForm1
       Caption = 'Calculadora'
       TabOrder = 1
       OnClick = CalcButtonClick
-      ExplicitLeft = 30
-      ExplicitTop = 160
-      ExplicitWidth = 139
     end
     object HashButton: TButton
       AlignWithMargins = True
@@ -59,9 +51,6 @@ object Form1: TForm1
       Caption = 'Hash'
       TabOrder = 2
       OnClick = HashButtonClick
-      ExplicitLeft = 30
-      ExplicitTop = 247
-      ExplicitWidth = 139
     end
     object CompButton: TButton
       AlignWithMargins = True
@@ -73,9 +62,6 @@ object Form1: TForm1
       Caption = 'Comprimir Arquivos'
       TabOrder = 3
       OnClick = CompButtonClick
-      ExplicitLeft = 30
-      ExplicitTop = 335
-      ExplicitWidth = 139
     end
   end
   object MainClient: TPageControl
@@ -83,7 +69,7 @@ object Form1: TForm1
     Top = 0
     Width = 431
     Height = 441
-    ActivePage = TabBase64
+    ActivePage = TabCalc
     Align = alClient
     TabOrder = 1
     object TabBase64: TTabSheet
@@ -124,22 +110,26 @@ object Form1: TForm1
         Left = 30
         Top = 80
         Width = 370
-        Height = 89
+        Height = 90
         Hint = 'Adicione o texto para converter'
+        Ctl3D = True
         Lines.Strings = (
           'memoInput')
+        ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 0
+        TabOrder = 1
       end
       object memoOutput: TMemo
         Left = 30
         Top = 250
         Width = 370
-        Height = 89
+        Height = 90
         Lines.Strings = (
           'memoOutput')
-        TabOrder = 1
+        ParentShowHint = False
+        ShowHint = False
+        TabOrder = 0
       end
       object btnEncode: TButton
         Left = 30
@@ -148,6 +138,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'Encode'
         TabOrder = 2
+        OnClick = btnEncodeClick
       end
       object btnDecode: TButton
         Left = 128
@@ -156,6 +147,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'Decode'
         TabOrder = 3
+        OnClick = btnDecodeClick
       end
       object btnCopy: TButton
         Left = 224
@@ -164,6 +156,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'Copy'
         TabOrder = 4
+        OnClick = btnCopyClick
       end
       object btnClear: TButton
         Left = 320
@@ -172,6 +165,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'Clear'
         TabOrder = 5
+        OnClick = btnClearClick
       end
     end
     object TabCalc: TTabSheet
