@@ -69,7 +69,7 @@ object Form1: TForm1
     Top = 0
     Width = 431
     Height = 441
-    ActivePage = TabCalc
+    ActivePage = TabHash
     Align = alClient
     TabOrder = 1
     object TabBase64: TTabSheet
@@ -177,6 +177,180 @@ object Form1: TForm1
       Caption = 'Hash'
       ImageIndex = 2
       TabVisible = False
+      object lblHashTitle: TLabel
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 132
+        Height = 21
+        Caption = 'Conversor de Hash'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblTypeSelect: TLabel
+        Left = 40
+        Top = 30
+        Width = 97
+        Height = 17
+        Caption = 'Tipo de Entrada:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblSelect: TLabel
+        Left = 40
+        Top = 80
+        Width = 48
+        Height = 17
+        Caption = 'Entrada:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 40
+        Top = 175
+        Width = 61
+        Height = 17
+        Caption = 'Algoritmo:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblResultHash: TLabel
+        Left = 40
+        Top = 315
+        Width = 61
+        Height = 17
+        Caption = 'Resultado:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object btnText: TButton
+        Left = 60
+        Top = 50
+        Width = 75
+        Height = 25
+        Caption = 'Texto'
+        TabOrder = 0
+      end
+      object btnFile: TButton
+        Left = 160
+        Top = 50
+        Width = 75
+        Height = 25
+        Caption = 'Arquivo'
+        TabOrder = 1
+      end
+      object memoTextInput: TMemo
+        Left = 40
+        Top = 103
+        Width = 353
+        Height = 66
+        Lines.Strings = (
+          'memoTextInput')
+        TabOrder = 2
+      end
+      object btnMd5: TButton
+        Left = 60
+        Top = 198
+        Width = 75
+        Height = 25
+        Caption = 'MD5'
+        TabOrder = 3
+      end
+      object btnSha1: TButton
+        Left = 160
+        Top = 198
+        Width = 75
+        Height = 25
+        Caption = 'SHA-1'
+        TabOrder = 4
+      end
+      object btnSha256: TButton
+        Left = 264
+        Top = 198
+        Width = 75
+        Height = 25
+        Caption = 'SHA-256'
+        TabOrder = 5
+      end
+      object btnSha384: TButton
+        Left = 60
+        Top = 238
+        Width = 75
+        Height = 25
+        Caption = 'SHA-384'
+        TabOrder = 6
+      end
+      object btnSha512: TButton
+        Left = 160
+        Top = 238
+        Width = 75
+        Height = 25
+        Caption = 'SHA-512'
+        TabOrder = 7
+      end
+      object btnCrc32: TButton
+        Left = 264
+        Top = 238
+        Width = 75
+        Height = 25
+        Caption = 'CRC32'
+        TabOrder = 8
+      end
+      object btnHashGenerate: TButton
+        Left = 60
+        Top = 278
+        Width = 141
+        Height = 25
+        Caption = 'Gerar Hash'
+        TabOrder = 9
+      end
+      object Button1: TButton
+        Left = 228
+        Top = 278
+        Width = 141
+        Height = 25
+        Caption = 'Clear'
+        TabOrder = 10
+        OnClick = Button1Click
+      end
+      object memoTextOutput: TMemo
+        Left = 40
+        Top = 340
+        Width = 353
+        Height = 68
+        Lines.Strings = (
+          'memoTextOutput')
+        TabOrder = 11
+      end
+      object btnCopyHash: TButton
+        Left = 320
+        Top = 340
+        Width = 73
+        Height = 24
+        Caption = 'Copy'
+        TabOrder = 12
+        OnClick = btnCopyHashClick
+      end
     end
     object TabComp: TTabSheet
       Caption = 'Comp'

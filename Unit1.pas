@@ -28,6 +28,24 @@ type
     btnClear: TButton;
     memoOutput: TMemo;
     memoInput: TMemo;
+    lblHashTitle: TLabel;
+    lblTypeSelect: TLabel;
+    btnText: TButton;
+    btnFile: TButton;
+    lblSelect: TLabel;
+    memoTextInput: TMemo;
+    Label1: TLabel;
+    btnMd5: TButton;
+    btnSha1: TButton;
+    btnSha256: TButton;
+    btnSha384: TButton;
+    btnSha512: TButton;
+    btnCrc32: TButton;
+    btnHashGenerate: TButton;
+    Button1: TButton;
+    memoTextOutput: TMemo;
+    lblResultHash: TLabel;
+    btnCopyHash: TButton;
     procedure FormCreate(Sender: TObject);
     procedure HighlightActiveButton(Button: TButton);
     procedure Base64ButtonClick(Sender: TObject);
@@ -39,6 +57,8 @@ type
     procedure btnEncodeClick(Sender: TObject);
     procedure btnDecodeClick(Sender: TObject);
     procedure ErrorTreatment(const Operation: string; E: exception);
+    procedure Button1Click(Sender: TObject);
+    procedure btnCopyHashClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -93,6 +113,13 @@ begin
   memoOutput.CopyToClipboard;
 end;
 
+procedure TForm1.btnCopyHashClick(Sender: TObject);
+begin
+  memoTextOutput.SelectAll;
+  memoTextOutput.CopyToClipboard;
+  memoTextOutput.HideSelection;
+end;
+
 procedure TForm1.btnDecodeClick(Sender: TObject);
 begin
   try
@@ -111,6 +138,12 @@ begin
   on E: Exception do
       ErrorTreatment('codificação', E);
   end;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  memoTextInput.Text := '';
+  memoTextOutput.Text := '';
 end;
 
 procedure TForm1.CalcButtonClick(Sender: TObject);
