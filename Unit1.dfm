@@ -75,7 +75,7 @@ object Form1: TForm1
     object TabBase64: TTabSheet
       Caption = 'B64'
       TabVisible = False
-      object lblBase64Title: TLabel
+      object lblTitleBase64: TLabel
         AlignWithMargins = True
         Left = 0
         Top = 0
@@ -90,7 +90,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object lblInput: TLabel
+      object lblInputBase64: TLabel
         AlignWithMargins = True
         Left = 40
         Top = 60
@@ -98,14 +98,14 @@ object Form1: TForm1
         Height = 15
         Caption = 'Input:'
       end
-      object lblOutput: TLabel
+      object lblOutputBase64: TLabel
         Left = 40
         Top = 230
         Width = 41
         Height = 15
         Caption = 'Output:'
       end
-      object memoInput: TMemo
+      object memoInputBase64: TMemo
         AlignWithMargins = True
         Left = 30
         Top = 80
@@ -120,7 +120,7 @@ object Form1: TForm1
         ShowHint = True
         TabOrder = 1
       end
-      object memoOutput: TMemo
+      object memoOutputBase64: TMemo
         Left = 30
         Top = 250
         Width = 370
@@ -131,41 +131,41 @@ object Form1: TForm1
         ShowHint = False
         TabOrder = 0
       end
-      object btnEncode: TButton
+      object btnEncodeBase64: TButton
         Left = 30
         Top = 190
         Width = 75
         Height = 25
         Caption = 'Encode'
         TabOrder = 2
-        OnClick = btnEncodeClick
+        OnClick = btnEncodeBase64Click
       end
-      object btnDecode: TButton
+      object btnDecodeBase64: TButton
         Left = 128
         Top = 190
         Width = 75
         Height = 25
         Caption = 'Decode'
         TabOrder = 3
-        OnClick = btnDecodeClick
+        OnClick = btnDecodeBase64Click
       end
-      object btnCopy: TButton
+      object btnCopyBase64: TButton
         Left = 224
         Top = 190
         Width = 75
         Height = 25
         Caption = 'Copy'
         TabOrder = 4
-        OnClick = btnCopyClick
+        OnClick = btnCopyBase64Click
       end
-      object btnClear: TButton
+      object btnClearBase64: TButton
         Left = 320
         Top = 190
         Width = 75
         Height = 25
         Caption = 'Clear'
         TabOrder = 5
-        OnClick = btnClearClick
+        OnClick = btnClearBase64Click
       end
     end
     object TabCalc: TTabSheet
@@ -177,7 +177,7 @@ object Form1: TForm1
       Caption = 'Hash'
       ImageIndex = 2
       TabVisible = False
-      object lblHashTitle: TLabel
+      object lblHashTitleHash: TLabel
         AlignWithMargins = True
         Left = 0
         Top = 0
@@ -191,7 +191,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object lblTypeSelect: TLabel
+      object lblTypeSelectHash: TLabel
         Left = 40
         Top = 30
         Width = 97
@@ -204,7 +204,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object lblSelect: TLabel
+      object lblSelectHash: TLabel
         Left = 40
         Top = 80
         Width = 48
@@ -217,7 +217,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Label1: TLabel
+      object lblAlgoritmHash: TLabel
         Left = 40
         Top = 175
         Width = 61
@@ -243,7 +243,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object btnText: TButton
+      object btnTextHash: TButton
         Left = 60
         Top = 50
         Width = 75
@@ -251,16 +251,16 @@ object Form1: TForm1
         Caption = 'Texto'
         TabOrder = 0
       end
-      object btnFile: TButton
+      object btnFileHash: TButton
         Left = 160
         Top = 50
         Width = 75
         Height = 25
         Caption = 'Arquivo'
         TabOrder = 1
-        OnClick = btnFileClick
+        OnClick = btnFileHashClick
       end
-      object memoTextInput: TMemo
+      object memoTextInputHash: TMemo
         Left = 40
         Top = 103
         Width = 353
@@ -269,61 +269,61 @@ object Form1: TForm1
           'memoTextInput')
         TabOrder = 2
       end
-      object btnMd5: TButton
+      object btnMd5Hash: TButton
         Left = 60
         Top = 198
         Width = 75
         Height = 25
         Caption = 'MD5'
         TabOrder = 3
-        OnClick = btnMd5Click
+        OnClick = btnMd5HashClick
       end
-      object btnSha1: TButton
+      object btnSha1Hash: TButton
         Left = 160
         Top = 198
         Width = 75
         Height = 25
         Caption = 'SHA-1'
         TabOrder = 4
-        OnClick = btnSha1Click
+        OnClick = btnSha1HashClick
       end
-      object btnSha256: TButton
+      object btnSha256Hash: TButton
         Left = 264
         Top = 198
         Width = 75
         Height = 25
         Caption = 'SHA-256'
         TabOrder = 5
-        OnClick = btnSha256Click
+        OnClick = btnSha256HashClick
       end
-      object btnSha384: TButton
+      object btnSha384Hash: TButton
         Left = 60
         Top = 238
         Width = 75
         Height = 25
         Caption = 'SHA-384'
         TabOrder = 6
-        OnClick = btnSha384Click
+        OnClick = btnSha384HashClick
       end
-      object btnSha512: TButton
+      object btnSha512Hash: TButton
         Left = 160
         Top = 238
         Width = 75
         Height = 25
         Caption = 'SHA-512'
         TabOrder = 7
-        OnClick = btnSha512Click
+        OnClick = btnSha512HashClick
       end
-      object btnCrc32: TButton
+      object btnCrc32Hash: TButton
         Left = 264
         Top = 238
         Width = 75
         Height = 25
         Caption = 'CRC32'
         TabOrder = 8
-        OnClick = btnCrc32Click
+        OnClick = btnCrc32HashClick
       end
-      object btnHashGenerate: TButton
+      object btnGenerateHash: TButton
         Left = 60
         Top = 278
         Width = 141
@@ -331,16 +331,16 @@ object Form1: TForm1
         Caption = 'Gerar Hash'
         TabOrder = 9
       end
-      object Button1: TButton
+      object btnClearHash: TButton
         Left = 228
         Top = 278
         Width = 141
         Height = 25
         Caption = 'Clear'
         TabOrder = 10
-        OnClick = Button1Click
+        OnClick = btnClearHashClick
       end
-      object memoTextOutput: TMemo
+      object memoTextOutputHash: TMemo
         Left = 40
         Top = 340
         Width = 353

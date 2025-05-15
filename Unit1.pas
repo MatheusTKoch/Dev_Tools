@@ -19,31 +19,31 @@ type
     TabCalc: TTabSheet;
     TabHash: TTabSheet;
     TabComp: TTabSheet;
-    lblBase64Title: TLabel;
-    lblInput: TLabel;
-    lblOutput: TLabel;
-    btnEncode: TButton;
-    btnDecode: TButton;
-    btnCopy: TButton;
-    btnClear: TButton;
-    memoOutput: TMemo;
-    memoInput: TMemo;
-    lblHashTitle: TLabel;
-    lblTypeSelect: TLabel;
-    btnText: TButton;
-    btnFile: TButton;
-    lblSelect: TLabel;
-    memoTextInput: TMemo;
-    Label1: TLabel;
-    btnMd5: TButton;
-    btnSha1: TButton;
-    btnSha256: TButton;
-    btnSha384: TButton;
-    btnSha512: TButton;
-    btnCrc32: TButton;
-    btnHashGenerate: TButton;
-    Button1: TButton;
-    memoTextOutput: TMemo;
+    lblTitleBase64: TLabel;
+    lblInputBase64: TLabel;
+    lblOutputBase64: TLabel;
+    btnEncodeBase64: TButton;
+    btnDecodeBase64: TButton;
+    btnCopyBase64: TButton;
+    btnClearBase64: TButton;
+    memoOutputBase64: TMemo;
+    memoInputBase64: TMemo;
+    lblHashTitleHash: TLabel;
+    lblTypeSelectHash: TLabel;
+    btnTextHash: TButton;
+    btnFileHash: TButton;
+    lblSelectHash: TLabel;
+    memoTextInputHash: TMemo;
+    lblAlgoritmHash: TLabel;
+    btnMd5Hash: TButton;
+    btnSha1Hash: TButton;
+    btnSha256Hash: TButton;
+    btnSha384Hash: TButton;
+    btnSha512Hash: TButton;
+    btnCrc32Hash: TButton;
+    btnGenerateHash: TButton;
+    btnClearHash: TButton;
+    memoTextOutputHash: TMemo;
     lblResultHash: TLabel;
     btnCopyHash: TButton;
     procedure FormCreate(Sender: TObject);
@@ -52,20 +52,20 @@ type
     procedure CalcButtonClick(Sender: TObject);
     procedure HashButtonClick(Sender: TObject);
     procedure CompButtonClick(Sender: TObject);
-    procedure btnClearClick(Sender: TObject);
-    procedure btnCopyClick(Sender: TObject);
-    procedure btnEncodeClick(Sender: TObject);
-    procedure btnDecodeClick(Sender: TObject);
+    procedure btnClearBase64Click(Sender: TObject);
+    procedure btnCopyBase64Click(Sender: TObject);
+    procedure btnEncodeBase64Click(Sender: TObject);
+    procedure btnDecodeBase64Click(Sender: TObject);
     procedure ErrorTreatment(const Operation: string; E: exception);
-    procedure Button1Click(Sender: TObject);
+    procedure btnClearHashClick(Sender: TObject);
     procedure btnCopyHashClick(Sender: TObject);
-    procedure btnFileClick(Sender: TObject);
-    procedure btnMd5Click(Sender: TObject);
-    procedure btnSha1Click(Sender: TObject);
-    procedure btnSha256Click(Sender: TObject);
-    procedure btnSha384Click(Sender: TObject);
-    procedure btnSha512Click(Sender: TObject);
-    procedure btnCrc32Click(Sender: TObject);
+    procedure btnFileHashClick(Sender: TObject);
+    procedure btnMd5HashClick(Sender: TObject);
+    procedure btnSha1HashClick(Sender: TObject);
+    procedure btnSha256HashClick(Sender: TObject);
+    procedure btnSha384HashClick(Sender: TObject);
+    procedure btnSha512HashClick(Sender: TObject);
+    procedure btnCrc32HashClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -103,65 +103,65 @@ procedure TForm1.Base64ButtonClick(Sender: TObject);
 begin
   MainClient.ActivePage := TabBase64;
   HighlightActiveButton(Base64Button);
-  memoInput.Text := '';
-  memoOutput.Text := '';
+  memoInputBase64.Text := '';
+  memoOutputBase64.Text := '';
 end;
 
-procedure TForm1.btnClearClick(Sender: TObject);
+procedure TForm1.btnClearBase64Click(Sender: TObject);
 begin
-  memoInput.Text := '';
-  memoOutput.Text := '';
+  memoInputBase64.Text := '';
+  memoOutputBase64.Text := '';
 end;
 
-procedure TForm1.btnCopyClick(Sender: TObject);
+procedure TForm1.btnCopyBase64Click(Sender: TObject);
 begin
-  memoOutput.SelectAll;
-  memoOutput.CopyToClipboard;
-  memoOutput.HideSelection := true;
+  memoOutputBase64.SelectAll;
+  memoOutputBase64.CopyToClipboard;
+  memoOutputBase64.HideSelection := true;
 end;
 
 procedure TForm1.btnCopyHashClick(Sender: TObject);
 begin
-  memoTextOutput.SelectAll;
-  memoTextOutput.CopyToClipboard;
-  memoTextOutput.HideSelection := true;
+  memoTextOutputHash.SelectAll;
+  memoTextOutputHash.CopyToClipboard;
+  memoTextOutputHash.HideSelection := true;
 end;
 
-procedure TForm1.btnCrc32Click(Sender: TObject);
+procedure TForm1.btnCrc32HashClick(Sender: TObject);
 begin
-  HighlightActiveButton(btnCrc32);
+  HighlightActiveButton(btnCrc32Hash);
 end;
 
-procedure TForm1.btnDecodeClick(Sender: TObject);
+procedure TForm1.btnDecodeBase64Click(Sender: TObject);
 begin
   try
-    memoInput.text := TNetEncoding.Base64.Decode(memoOutput.Text);
+    memoInputBase64.text := TNetEncoding.Base64.Decode(memoOutputBase64.Text);
   except
   on E: Exception do
     ErrorTreatment('decodificação', E);
   end;
 end;
 
-procedure TForm1.btnEncodeClick(Sender: TObject);
+procedure TForm1.btnEncodeBase64Click(Sender: TObject);
 begin
   try
-    memoOutput.Text := TNetEncoding.Base64.Encode(memoInput.Text);
+    memoOutputBase64.Text := TNetEncoding.Base64.Encode(memoInputBase64.Text);
   except
   on E: Exception do
       ErrorTreatment('codificação', E);
   end;
 end;
 
-procedure TForm1.btnFileClick(Sender: TObject);
+procedure TForm1.btnFileHashClick(Sender: TObject);
 var
   OpenDialog: TOpenDialog;
   FileStream: TFileStream;
   Buffer: TBytes;
   FileSize: Int64;
 begin
-  btnText.Font.Style := [];
-  btnText.Font.Color := clWindowText;
-  HighlightActiveButton(btnFile);
+  btnTextHash.Font.Style := [];
+  btnTextHash.Font.Color := clWindowText;
+  HighlightActiveButton(btnFileHash);
   OpenDialog := TOpenDialog.Create(nil);
   try
     OpenDialog.Title := 'Select file';
@@ -182,7 +182,7 @@ begin
 
           SetLength(Buffer, FileSize);
           FileStream.ReadBuffer(Buffer[0], FileSize);
-          memoTextInput.Lines.LoadFromFile(OpenDialog.FileName);
+          memoTextInputHash.Lines.LoadFromFile(OpenDialog.FileName);
 
         finally
           FileStream.Free;
@@ -198,35 +198,35 @@ begin
 end;
 
 
-procedure TForm1.btnMd5Click(Sender: TObject);
+procedure TForm1.btnMd5HashClick(Sender: TObject);
 begin
-  HighlightActiveButton(btnMd5);
+  HighlightActiveButton(btnMd5Hash);
 end;
 
-procedure TForm1.btnSha1Click(Sender: TObject);
+procedure TForm1.btnSha1HashClick(Sender: TObject);
 begin
-  HighlightActiveButton(btnSha1);
+  HighlightActiveButton(btnSha1Hash);
 end;
 
-procedure TForm1.btnSha256Click(Sender: TObject);
+procedure TForm1.btnSha256HashClick(Sender: TObject);
 begin
-  HighlightActiveButton(btnSha256);
+  HighlightActiveButton(btnSha256Hash);
 end;
 
-procedure TForm1.btnSha384Click(Sender: TObject);
+procedure TForm1.btnSha384HashClick(Sender: TObject);
 begin
-  HighlightActiveButton(btnSha384);
+  HighlightActiveButton(btnSha384Hash);
 end;
 
-procedure TForm1.btnSha512Click(Sender: TObject);
+procedure TForm1.btnSha512HashClick(Sender: TObject);
 begin
-  HighlightActiveButton(btnSha512);
+  HighlightActiveButton(btnSha512Hash);
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.btnClearHashClick(Sender: TObject);
 begin
-  memoTextInput.Text := '';
-  memoTextOutput.Text := '';
+  memoTextInputHash.Text := '';
+  memoTextOutputHash.Text := '';
 end;
 
 procedure TForm1.CalcButtonClick(Sender: TObject);
@@ -245,10 +245,10 @@ procedure TForm1.HashButtonClick(Sender: TObject);
 begin
   MainClient.ActivePage := TabHash;
   HighlightActiveButton(HashButton);
-  HighlightActiveButton(btnText);
-  memoTextInput.Text := '';
-  memoTextOutput.Text := '';
-  memoTextInput.SetFocus;
+  HighlightActiveButton(btnTextHash);
+  memoTextInputHash.Text := '';
+  memoTextOutputHash.Text := '';
+  memoTextInputHash.SetFocus;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
