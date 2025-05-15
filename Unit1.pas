@@ -59,6 +59,13 @@ type
     procedure ErrorTreatment(const Operation: string; E: exception);
     procedure Button1Click(Sender: TObject);
     procedure btnCopyHashClick(Sender: TObject);
+    procedure btnFileClick(Sender: TObject);
+    procedure btnMd5Click(Sender: TObject);
+    procedure btnSha1Click(Sender: TObject);
+    procedure btnSha256Click(Sender: TObject);
+    procedure btnSha384Click(Sender: TObject);
+    procedure btnSha512Click(Sender: TObject);
+    procedure btnCrc32Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,15 +96,15 @@ begin
     AllButtons[i].Font.Color := clWindowText;
   end;
 
-  Button.Font.Style := [fsBold];
   Button.Font.Color := clBlue;
 end;
-
 
 procedure TForm1.Base64ButtonClick(Sender: TObject);
 begin
   MainClient.ActivePage := TabBase64;
   HighlightActiveButton(Base64Button);
+  memoInput.Text := '';
+  memoOutput.Text := '';
 end;
 
 procedure TForm1.btnClearClick(Sender: TObject);
@@ -108,16 +115,21 @@ end;
 
 procedure TForm1.btnCopyClick(Sender: TObject);
 begin
-  memoOutput.SetFocus;
   memoOutput.SelectAll;
   memoOutput.CopyToClipboard;
+  memoOutput.HideSelection := true;
 end;
 
 procedure TForm1.btnCopyHashClick(Sender: TObject);
 begin
   memoTextOutput.SelectAll;
   memoTextOutput.CopyToClipboard;
-  memoTextOutput.HideSelection;
+  memoTextOutput.HideSelection := true;
+end;
+
+procedure TForm1.btnCrc32Click(Sender: TObject);
+begin
+  HighlightActiveButton(btnCrc32);
 end;
 
 procedure TForm1.btnDecodeClick(Sender: TObject);
@@ -138,6 +150,77 @@ begin
   on E: Exception do
       ErrorTreatment('codificação', E);
   end;
+end;
+
+procedure TForm1.btnFileClick(Sender: TObject);
+var
+  OpenDialog: TOpenDialog;
+  FileStream: TFileStream;
+  Buffer: TBytes;
+  FileSize: Int64;
+begin
+  btnText.Font.Style := [];
+  btnText.Font.Color := clWindowText;
+  HighlightActiveButton(btnFile);
+  OpenDialog := TOpenDialog.Create(nil);
+  try
+    OpenDialog.Title := 'Select file';
+    OpenDialog.Filter := 'Select all files (*.*)|*.*';
+
+    if OpenDialog.Execute then
+    begin
+      try
+        FileStream := TFileStream.Create(OpenDialog.FileName, fmOpenRead or fmShareDenyNone);
+        try
+          FileSize := FileStream.Size;
+
+          if FileSize > 10 * 1024 * 1024 then
+          begin
+            ShowMessage('File selected is too big.');
+            Exit;
+          end;
+
+          SetLength(Buffer, FileSize);
+          FileStream.ReadBuffer(Buffer[0], FileSize);
+          memoTextInput.Lines.LoadFromFile(OpenDialog.FileName);
+
+        finally
+          FileStream.Free;
+        end;
+      except
+        on E: Exception do
+          ShowMessage('Error reading file: ' + E.Message);
+      end;
+    end;
+  finally
+    OpenDialog.Free;
+  end;
+end;
+
+
+procedure TForm1.btnMd5Click(Sender: TObject);
+begin
+  HighlightActiveButton(btnMd5);
+end;
+
+procedure TForm1.btnSha1Click(Sender: TObject);
+begin
+  HighlightActiveButton(btnSha1);
+end;
+
+procedure TForm1.btnSha256Click(Sender: TObject);
+begin
+  HighlightActiveButton(btnSha256);
+end;
+
+procedure TForm1.btnSha384Click(Sender: TObject);
+begin
+  HighlightActiveButton(btnSha384);
+end;
+
+procedure TForm1.btnSha512Click(Sender: TObject);
+begin
+  HighlightActiveButton(btnSha512);
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -162,6 +245,10 @@ procedure TForm1.HashButtonClick(Sender: TObject);
 begin
   MainClient.ActivePage := TabHash;
   HighlightActiveButton(HashButton);
+  HighlightActiveButton(btnText);
+  memoTextInput.Text := '';
+  memoTextOutput.Text := '';
+  memoTextInput.SetFocus;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

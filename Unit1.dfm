@@ -258,6 +258,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'Arquivo'
         TabOrder = 1
+        OnClick = btnFileClick
       end
       object memoTextInput: TMemo
         Left = 40
@@ -275,6 +276,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'MD5'
         TabOrder = 3
+        OnClick = btnMd5Click
       end
       object btnSha1: TButton
         Left = 160
@@ -283,6 +285,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'SHA-1'
         TabOrder = 4
+        OnClick = btnSha1Click
       end
       object btnSha256: TButton
         Left = 264
@@ -291,6 +294,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'SHA-256'
         TabOrder = 5
+        OnClick = btnSha256Click
       end
       object btnSha384: TButton
         Left = 60
@@ -299,6 +303,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'SHA-384'
         TabOrder = 6
+        OnClick = btnSha384Click
       end
       object btnSha512: TButton
         Left = 160
@@ -307,6 +312,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'SHA-512'
         TabOrder = 7
+        OnClick = btnSha512Click
       end
       object btnCrc32: TButton
         Left = 264
@@ -315,6 +321,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'CRC32'
         TabOrder = 8
+        OnClick = btnCrc32Click
       end
       object btnHashGenerate: TButton
         Left = 60
