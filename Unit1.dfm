@@ -250,6 +250,7 @@ object Form1: TForm1
         Height = 25
         Caption = 'Texto'
         TabOrder = 0
+        OnClick = btnTextHashClick
       end
       object btnFileHash: TButton
         Left = 160
@@ -269,67 +270,14 @@ object Form1: TForm1
           'memoTextInput')
         TabOrder = 2
       end
-      object btnMd5Hash: TButton
-        Left = 60
-        Top = 198
-        Width = 75
-        Height = 25
-        Caption = 'MD5'
-        TabOrder = 3
-        OnClick = btnMd5HashClick
-      end
-      object btnSha1Hash: TButton
-        Left = 160
-        Top = 198
-        Width = 75
-        Height = 25
-        Caption = 'SHA-1'
-        TabOrder = 4
-        OnClick = btnSha1HashClick
-      end
-      object btnSha256Hash: TButton
-        Left = 264
-        Top = 198
-        Width = 75
-        Height = 25
-        Caption = 'SHA-256'
-        TabOrder = 5
-        OnClick = btnSha256HashClick
-      end
-      object btnSha384Hash: TButton
-        Left = 60
-        Top = 238
-        Width = 75
-        Height = 25
-        Caption = 'SHA-384'
-        TabOrder = 6
-        OnClick = btnSha384HashClick
-      end
-      object btnSha512Hash: TButton
-        Left = 160
-        Top = 238
-        Width = 75
-        Height = 25
-        Caption = 'SHA-512'
-        TabOrder = 7
-        OnClick = btnSha512HashClick
-      end
-      object btnCrc32Hash: TButton
-        Left = 264
-        Top = 238
-        Width = 75
-        Height = 25
-        Caption = 'CRC32'
-        TabOrder = 8
-        OnClick = btnCrc32HashClick
-      end
       object btnGenerateHash: TButton
         Left = 60
         Top = 278
         Width = 141
         Height = 25
         Caption = 'Gerar Hash'
-        TabOrder = 9
+        TabOrder = 3
+        OnClick = btnGenerateHashClick
       end
       object btnClearHash: TButton
         Left = 228
@@ -337,7 +285,7 @@ object Form1: TForm1
         Width = 141
         Height = 25
         Caption = 'Clear'
-        TabOrder = 10
+        TabOrder = 4
         OnClick = btnClearHashClick
       end
       object memoTextOutputHash: TMemo
@@ -347,7 +295,7 @@ object Form1: TForm1
         Height = 68
         Lines.Strings = (
           'memoTextOutput')
-        TabOrder = 11
+        TabOrder = 5
       end
       object btnCopyHash: TButton
         Left = 320
@@ -355,8 +303,24 @@ object Form1: TForm1
         Width = 73
         Height = 24
         Caption = 'Copy'
-        TabOrder = 12
+        TabOrder = 6
         OnClick = btnCopyHashClick
+      end
+      object radTypeHash: TRadioGroup
+        Left = 40
+        Top = 198
+        Width = 353
+        Height = 60
+        Columns = 3
+        Items.Strings = (
+          'MD5'
+          'SHA-1'
+          'SHA-256'
+          'SHA-384'
+          'SHA-512'
+          'CRC32')
+        ShowFrame = False
+        TabOrder = 7
       end
     end
     object TabComp: TTabSheet

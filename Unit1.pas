@@ -3,9 +3,10 @@ unit Unit1;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, System.NetEncoding, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.Hash, System.SysUtils, System.Variants, System.Classes, System.NetEncoding, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-  Vcl.StdCtrls, IdBaseComponent, IdNetworkCalculator;
+  Vcl.StdCtrls, IdBaseComponent, IdNetworkCalculator, Vcl.CheckLst,
+  Vcl.ControlList;
 
 type
   TForm1 = class(TForm)
@@ -35,17 +36,12 @@ type
     lblSelectHash: TLabel;
     memoTextInputHash: TMemo;
     lblAlgoritmHash: TLabel;
-    btnMd5Hash: TButton;
-    btnSha1Hash: TButton;
-    btnSha256Hash: TButton;
-    btnSha384Hash: TButton;
-    btnSha512Hash: TButton;
-    btnCrc32Hash: TButton;
     btnGenerateHash: TButton;
     btnClearHash: TButton;
     memoTextOutputHash: TMemo;
     lblResultHash: TLabel;
     btnCopyHash: TButton;
+    radTypeHash: TRadioGroup;
     procedure FormCreate(Sender: TObject);
     procedure HighlightActiveButton(Button: TButton);
     procedure Base64ButtonClick(Sender: TObject);
@@ -60,12 +56,9 @@ type
     procedure btnClearHashClick(Sender: TObject);
     procedure btnCopyHashClick(Sender: TObject);
     procedure btnFileHashClick(Sender: TObject);
-    procedure btnMd5HashClick(Sender: TObject);
-    procedure btnSha1HashClick(Sender: TObject);
-    procedure btnSha256HashClick(Sender: TObject);
-    procedure btnSha384HashClick(Sender: TObject);
-    procedure btnSha512HashClick(Sender: TObject);
-    procedure btnCrc32HashClick(Sender: TObject);
+    procedure btnTextHashClick(Sender: TObject);
+    procedure btnGenerateHashClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -99,6 +92,7 @@ begin
   Button.Font.Color := clBlue;
 end;
 
+
 procedure TForm1.Base64ButtonClick(Sender: TObject);
 begin
   MainClient.ActivePage := TabBase64;
@@ -127,10 +121,6 @@ begin
   memoTextOutputHash.HideSelection := true;
 end;
 
-procedure TForm1.btnCrc32HashClick(Sender: TObject);
-begin
-  HighlightActiveButton(btnCrc32Hash);
-end;
 
 procedure TForm1.btnDecodeBase64Click(Sender: TObject);
 begin
@@ -197,30 +187,70 @@ begin
   end;
 end;
 
-
-procedure TForm1.btnMd5HashClick(Sender: TObject);
+procedure TForm1.btnGenerateHashClick(Sender: TObject);
+var
+  textoSelecionado: string;
+  hashMD5: THashMD5;
+  hashSHA1: THashSHA1;
+  hashSHA2: THashSHA2;
 begin
-  HighlightActiveButton(btnMd5Hash);
+  if radTypeHash.ItemIndex >= 0 then
+  begin
+    textoSelecionado := radTypeHash.Items[radTypeHash.ItemIndex];
+  end;
+
+  try
+    if textoSelecionado = 'MD5' then
+    begin
+      hashMD5 := THashMD5.Create;
+      hashMD5.Update(memoTextInputHash.Text);
+      memoTextOutputHash.Text := hashMD5.HashAsString;
+    end;
+
+    if textoSelecionado = 'SHA-1' then
+    begin
+      hashSHA1 := THashSHA1.Create;
+      hashSHA1.Update(memoTextInputHash.Text);
+      memoTextOutputHash.Text := hashSHA1.HashAsString;
+    end;
+
+    if textoSelecionado = 'SHA-256' then
+    begin
+      hashSHA2 := THashSHA2.Create(SHA256);
+      hashSHA2.Update(memoTextInputHash.Text);
+      memoTextOutputHash.Text := hashSHA2.HashAsString;
+    end;
+
+    if textoSelecionado = 'SHA-384' then
+    begin
+      hashSHA2 := THashSHA2.Create(SHA384);
+      hashSHA2.Update(memoTextInputHash.Text);
+      memoTextOutputHash.Text := hashSHA2.HashAsString;
+    end;
+
+    if textoSelecionado = 'SHA-512' then
+    begin
+      hashSHA2 := THashSHA2.Create(SHA512);
+      hashSHA2.Update(memoTextInputHash.Text);
+      memoTextOutputHash.Text := hashSHA2.HashAsString;
+    end;
+
+    if textoSelecionado = 'SHA-512' then
+    begin
+      hashSHA2 := THashSHA2.Create(SHA512);
+      hashSHA2.Update(memoTextInputHash.Text);
+      memoTextOutputHash.Text := hashSHA2.HashAsString;
+    end;
+
+
+  finally
+    memoTextOutputHash.SetFocus;
+  end;
 end;
 
-procedure TForm1.btnSha1HashClick(Sender: TObject);
+procedure TForm1.btnTextHashClick(Sender: TObject);
 begin
-  HighlightActiveButton(btnSha1Hash);
-end;
-
-procedure TForm1.btnSha256HashClick(Sender: TObject);
-begin
-  HighlightActiveButton(btnSha256Hash);
-end;
-
-procedure TForm1.btnSha384HashClick(Sender: TObject);
-begin
-  HighlightActiveButton(btnSha384Hash);
-end;
-
-procedure TForm1.btnSha512HashClick(Sender: TObject);
-begin
-  HighlightActiveButton(btnSha512Hash);
+  memoTextInputHash.SetFocus;
 end;
 
 procedure TForm1.btnClearHashClick(Sender: TObject);
