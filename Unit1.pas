@@ -3,7 +3,7 @@ unit Unit1;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.Hash, System.SysUtils, System.Variants, System.Classes, System.NetEncoding, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.Hash, System.SysUtils, System.Variants, System.Classes, System.NetEncoding, System.Zip, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.StdCtrls, IdBaseComponent, IdNetworkCalculator, Vcl.CheckLst,
   Vcl.ControlList;
@@ -42,6 +42,11 @@ type
     lblResultHash: TLabel;
     btnCopyHash: TButton;
     radTypeHash: TRadioGroup;
+    lblCompArquivos: TLabel;
+    btnSelecionarArquivo: TButton;
+    lblStatusArquivo: TLabel;
+    Button1: TButton;
+    lblStatusCompressao: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure HighlightActiveButton(Button: TButton);
     procedure Base64ButtonClick(Sender: TObject);
@@ -58,6 +63,7 @@ type
     procedure btnFileHashClick(Sender: TObject);
     procedure btnTextHashClick(Sender: TObject);
     procedure btnGenerateHashClick(Sender: TObject);
+    procedure btnSelecionarArquivoClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -185,6 +191,16 @@ begin
   finally
     OpenDialog.Free;
   end;
+end;
+
+procedure TForm1.btnSelecionarArquivoClick(Sender: TObject);
+var
+  vDialog: TOpenDialog;
+  vFileStream: TFileStream;
+begin
+
+
+
 end;
 
 procedure TForm1.btnGenerateHashClick(Sender: TObject);

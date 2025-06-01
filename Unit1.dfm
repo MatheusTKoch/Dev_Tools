@@ -69,7 +69,7 @@ object Form1: TForm1
     Top = 0
     Width = 431
     Height = 441
-    ActivePage = TabHash
+    ActivePage = TabComp
     Align = alClient
     TabOrder = 1
     object TabBase64: TTabSheet
@@ -327,6 +327,50 @@ object Form1: TForm1
       Caption = 'Comp'
       ImageIndex = 3
       TabVisible = False
+      object lblCompArquivos: TLabel
+        Left = 2
+        Top = 1
+        Width = 172
+        Height = 21
+        Caption = 'Compressor de Arquivos'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblStatusArquivo: TLabel
+        Left = 192
+        Top = 84
+        Width = 159
+        Height = 15
+        Caption = 'Nenhum arquivo selecionado!'
+      end
+      object lblStatusCompressao: TLabel
+        Left = 192
+        Top = 188
+        Width = 153
+        Height = 15
+        Caption = 'Compress'#227'o n'#227'o concluida!'
+      end
+      object btnSelecionarArquivo: TButton
+        Left = 64
+        Top = 80
+        Width = 110
+        Height = 25
+        Caption = 'Selecionar Pasta'
+        TabOrder = 0
+        OnClick = btnSelecionarArquivoClick
+      end
+      object Button1: TButton
+        Left = 64
+        Top = 184
+        Width = 110
+        Height = 25
+        Caption = 'Salvar Arquivo'
+        TabOrder = 1
+      end
     end
   end
 end
